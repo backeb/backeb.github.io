@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Björn Backeberg — Physical oceanographer & product lead</title>
+<meta name="description" content="Björn Backeberg builds the bridge between climate science, advanced computing, and decision-support products.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --abyss:#081822;
+    --deep:#0d2433;
+    --deep-2:#0f2c42;
+    --current:#34b3a8;
+    --current-dim:#2a8f87;
+    --shallow:#6fa8bf;
+    --signal:#f0a24e;
+    --foam:#eef4f6;
+    --mist:#9db4be;
+    --line:rgba(111,168,191,0.15);
+    --line-2:rgba(111,168,191,0.28);
+    --serif:'Newsreader',Georgia,serif;
+    --sans:'Inter',system-ui,sans-serif;
+    --mono:'IBM Plex Mono',ui-monospace,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--abyss);color:var(--foam);
+    font-family:var(--sans);font-weight:400;line-height:1.7;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--current);color:var(--abyss)}
+  :focus-visible{outline:2px solid var(--signal);outline-offset:3px;border-radius:2px}
+
+  .wrap{max-width:1120px;margin:0 auto;padding:0 32px}
+  .eyebrow{
+    font-family:var(--mono);font-size:.72rem;font-weight:500;
+    letter-spacing:.22em;text-transform:uppercase;color:var(--current);
+  }
+
+  /* ---------- HERO ---------- */
+  #hero{position:relative;min-height:100vh;display:flex;align-items:center;
+    border-bottom:1px solid var(--line);overflow:hidden}
+  #flow{position:absolute;inset:0;z-index:0;opacity:.85}
+  #hero .wrap{position:relative;z-index:1;width:100%;padding-top:140px;padding-bottom:80px}
+  .hero-eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:28px}
+  .hero-eyebrow .tick{width:26px;height:1px;background:var(--signal)}
+  h1{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(3rem,9.5vw,6.6rem);line-height:.98;letter-spacing:-.02em;
+    color:var(--foam);max-width:14ch;
+  }
+  h1 .accent{font-style:italic;color:var(--current)}
+  .lede{
+    font-size:clamp(1.1rem,2.3vw,1.5rem);line-height:1.5;color:var(--mist);
+    max-width:34ch;margin:34px 0 0;font-weight:400;
+  }
+  .lede strong{color:var(--foam);font-weight:500}
+  .hero-meta{display:flex;flex-wrap:wrap;align-items:center;gap:14px 26px;margin-top:46px}
+  .role-chip{
+    display:inline-flex;align-items:center;gap:10px;
+    font-family:var(--mono);font-size:.8rem;color:var(--foam);
+    padding:9px 16px;border:1px solid var(--line-2);border-radius:999px;background:rgba(13,36,51,.5)
+  }
+  .role-chip .dot{width:7px;height:7px;border-radius:50%;background:var(--signal);
+    box-shadow:0 0 0 4px rgba(240,162,78,.18)}
+  .links{display:flex;flex-wrap:wrap;gap:6px 22px;font-family:var(--mono);font-size:.82rem}
+  .links a{color:var(--shallow);display:inline-flex;align-items:center;gap:6px;
+    padding:4px 0;border-bottom:1px solid transparent;transition:color .18s,border-color .18s}
+  .links a .arr{color:var(--current);transition:transform .18s}
+  .links a:hover{color:var(--foam);border-color:var(--signal)}
+  .links a:hover .arr{transform:translate(2px,-2px);color:var(--signal)}
+
+  /* ---------- SECTIONS ---------- */
+  section.block{padding:120px 0;border-bottom:1px solid var(--line)}
+  .head{display:flex;align-items:baseline;gap:18px;margin-bottom:14px}
+  .head .num{font-family:var(--mono);font-size:.8rem;color:var(--current-dim);letter-spacing:.1em}
+  h2{font-family:var(--serif);font-weight:500;font-size:clamp(1.7rem,4.2vw,2.6rem);
+    letter-spacing:-.01em;line-height:1.1}
+  .section-intro{color:var(--mist);max-width:58ch;margin-top:18px;font-size:1.05rem}
+
+  /* ---------- JOURNEY ---------- */
+  .journey{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:64px;
+    border-top:1px solid var(--line)}
+  .phase{padding:30px 26px 30px 0;border-right:1px solid var(--line);position:relative}
+  .phase:last-child{border-right:none}
+  .phase::before{content:"";position:absolute;top:-1px;left:0;width:34px;height:2px;background:var(--current)}
+  .phase:last-child::before{background:var(--current)}
+  .phase .pnum{font-family:var(--mono);font-size:.74rem;color:var(--current-dim);letter-spacing:.12em}
+  .phase h3{font-family:var(--serif);font-weight:500;font-size:1.28rem;margin:18px 0 10px;color:var(--foam)}
+  .phase p{font-size:.92rem;color:var(--mist);line-height:1.55}
+  .phase.now h3{color:var(--signal)}
+
+  /* ---------- WORK ---------- */
+  .group{margin-top:84px}
+  .group:first-of-type{margin-top:64px}
+  .group-label{display:flex;align-items:center;gap:16px;margin-bottom:30px}
+  .group-label .lbl{font-family:var(--mono);font-size:.78rem;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--current)}
+  .group-label .rule{flex:1;height:1px;background:var(--line)}
+  .group-label .count{font-family:var(--mono);font-size:.74rem;color:var(--mist)}
+  .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:16px}
+  .card{
+    display:flex;flex-direction:column;background:var(--deep);
+    border:1px solid var(--line);border-radius:14px;padding:26px 24px 22px;
+    transition:transform .2s ease,border-color .2s ease,background .2s ease;position:relative
+  }
+  a.card:hover{transform:translateY(-4px);border-color:var(--line-2);background:var(--deep-2)}
+  .card h4{font-family:var(--serif);font-weight:500;font-size:1.3rem;line-height:1.2;
+    color:var(--foam);display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+  .card h4 .arr{font-family:var(--sans);color:var(--current);font-size:1rem;flex-shrink:0;
+    transition:transform .2s,color .2s;margin-top:4px}
+  a.card:hover h4 .arr{transform:translate(3px,-3px);color:var(--signal)}
+  .card p{color:var(--mist);font-size:.95rem;margin-top:12px;flex:1}
+  .period{font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;color:var(--current-dim);
+    display:block;margin-bottom:12px}
+  .tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:20px}
+  .tag{font-family:var(--mono);font-size:.68rem;letter-spacing:.06em;color:var(--shallow);
+    padding:4px 10px;border:1px solid var(--line);border-radius:999px}
+
+  /* ---------- CREDENTIALS ---------- */
+  .creds{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;margin-top:64px}
+  .stat-row{display:flex;flex-direction:column;gap:0}
+  .stat{padding:24px 0;border-bottom:1px solid var(--line);display:flex;align-items:baseline;gap:20px}
+  .stat:first-child{padding-top:0}
+  .stat .big{font-family:var(--serif);font-size:2.6rem;font-weight:500;color:var(--current);
+    line-height:1;min-width:3.4ch}
+  .stat .desc{color:var(--mist);font-size:.98rem}
+  .stat .desc b{color:var(--foam);font-weight:500}
+  .honours h3{font-family:var(--mono);font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--current);margin-bottom:24px}
+  .honour{padding:16px 0;border-bottom:1px solid var(--line)}
+  .honour:first-of-type{padding-top:0}
+  .honour .y{font-family:var(--mono);font-size:.76rem;color:var(--current-dim);margin-right:14px}
+  .honour .t{color:var(--foam)}
+  .honour .src{display:block;color:var(--mist);font-size:.86rem;margin-top:4px;padding-left:0}
+  .pub-note{margin-top:34px;font-size:.95rem;color:var(--mist)}
+  .pub-note a{color:var(--shallow);border-bottom:1px solid var(--signal);padding-bottom:1px}
+  .pub-note a:hover{color:var(--foam)}
+  .langs{margin-top:34px}
+  .langs h3{font-family:var(--mono);font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--current);margin-bottom:14px}
+  .langs p{color:var(--foam);font-size:.95rem;line-height:1.6}
+  .langs span{color:var(--mist);font-size:.82rem;font-family:var(--mono)}
+  .caps{margin-top:64px;border-top:1px solid var(--line);padding-top:40px}
+  .caps h3{font-family:var(--mono);font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--current);margin-bottom:22px}
+  .caps .tags{gap:10px}
+  .caps .tag{font-size:.78rem;padding:8px 15px;color:var(--foam);border-color:var(--line-2)}
+
+  /* ---------- FOOTER ---------- */
+  footer{padding:90px 0 70px}
+  .foot-grid{display:flex;flex-wrap:wrap;justify-content:space-between;gap:40px;align-items:flex-end}
+  .foot-grid h2{max-width:16ch}
+  .foot-links{display:flex;flex-direction:column;gap:12px;font-family:var(--mono);font-size:.85rem}
+  .foot-links a{color:var(--shallow);display:inline-flex;gap:8px;align-items:center}
+  .foot-links a:hover{color:var(--foam)}
+  .foot-links a .arr{color:var(--current)}
+  .updated{font-family:var(--mono);font-size:.74rem;color:var(--current-dim);
+    letter-spacing:.1em;margin-top:60px;border-top:1px solid var(--line);padding-top:24px}
+
+  /* ---------- REVEAL ---------- */
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  @media (max-width:820px){
+    .journey{grid-template-columns:1fr 1fr}
+    .phase{border-right:none;border-bottom:1px solid var(--line);padding:26px 0}
+    .phase:nth-child(odd){padding-right:26px;border-right:1px solid var(--line)}
+    .creds{grid-template-columns:1fr;gap:48px}
+  }
+  @media (max-width:560px){
+    .wrap{padding:0 22px}
+    section.block{padding:84px 0}
+    .journey{grid-template-columns:1fr}
+    .phase,.phase:nth-child(odd){border-right:none;padding:24px 0}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .reveal{opacity:1;transform:none;transition:none}
+    *{transition:none!important}
+  }
+  .extra{display:none}
+  .cards.expanded .extra{display:flex}
+  .show-all{margin-top:26px;font-family:var(--mono);font-size:.8rem;letter-spacing:.04em;
+    color:var(--shallow);background:transparent;border:1px solid var(--line-2);border-radius:999px;
+    padding:11px 22px;cursor:pointer;display:inline-flex;align-items:center;gap:10px;
+    transition:color .18s,border-color .18s}
+  .show-all:hover{color:var(--foam);border-color:var(--current)}
+  .show-all .chev{color:var(--current);font-size:.9rem}
+  .synthesis{margin-top:46px;border-top:1px solid var(--line);padding-top:36px;max-width:64ch}
+  .syn-eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--signal);display:block;margin-bottom:16px}
+  .synthesis p{font-family:var(--serif);font-weight:500;font-size:clamp(1.3rem,3vw,1.9rem);
+    line-height:1.32;color:var(--foam)}
+  .synthesis strong{color:var(--signal);font-weight:500}
+  .pub-inline{display:block;margin-top:12px;font-size:.86rem;color:var(--mist);line-height:1.55}
+  .pub-inline a{color:var(--shallow);border-bottom:1px solid var(--signal);padding-bottom:1px}
+  .pub-inline a:hover{color:var(--foam)}
+</style>
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<header id="hero">
+  <canvas id="flow" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div class="hero-eyebrow">
+      <span class="tick"></span>
+      <span class="eyebrow">Physical oceanographer · strategic advisor</span>
+    </div>
+    <h1>Björn <span class="accent">Backeberg</span></h1>
+    <p class="lede">I build the bridge between <strong>climate &amp; ocean science</strong>, <strong>advanced computing</strong>, and <strong>decision-support products</strong>.</p>
+    <div class="hero-meta">
+      <span class="role-chip"><span class="dot"></span>Senior Researcher · Deltares · Delft, NL</span>
+      <!-- LINKS: LinkedIn is live. Replace the ORCID and Scholar URLs with your own profile links. -->
+      <nav class="links" aria-label="Profiles">
+        <a href="https://www.linkedin.com/in/backeb/" target="_blank" rel="noopener">LinkedIn <span class="arr">↗</span></a>
+        <a href="https://github.com/backeb" target="_blank" rel="noopener">GitHub <span class="arr">↗</span></a>
+        <a href="https://orcid.org/0000-0001-7940-6975" target="_blank" rel="noopener">ORCID <span class="arr">↗</span></a>
+        <a href="https://scholar.google.com/citations?user=wOWu1TwAAAAJ" target="_blank" rel="noopener">Google Scholar <span class="arr">↗</span></a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ JOURNEY ============ -->
+<section class="block" id="journey">
+  <div class="wrap reveal">
+    <div class="head"><span class="num">01</span><h2>The through-line</h2></div>
+    <p class="section-intro">These aren't stages I moved through — they're four things I do at once. The leverage is in the connections between them, and that intersection is the vantage point I bring as a strategic advisor.</p>
+    <div class="journey">
+      <div class="phase">
+        <h3>Academic research</h3>
+        <p>Numerical ocean modelling and satellite remote sensing, from ocean–climate dynamics to operational forecasting.</p>
+      </div>
+      <div class="phase">
+        <h3>Applied science</h3>
+        <p>Turning models into tools — search-and-rescue trajectories, automated workflows, global flood mapping.</p>
+      </div>
+      <div class="phase">
+        <h3>Project leadership</h3>
+        <p>Coordinating large international consortia across EO, cloud infrastructure and digital twins.</p>
+      </div>
+      <div class="phase">
+        <h3>Product management &amp; development</h3>
+        <p>Taking science-based services from prototype to lasting, societal-scale impact.</p>
+      </div>
+    </div>
+    <div class="synthesis">
+      <span class="syn-eyebrow">Where it converges</span>
+      <p>I bring these together as a <strong>strategic advisor</strong> — at the intersection of science, technology, and the decisions they inform.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SELECTED WORK ============ -->
+<section class="block" id="work">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="head"><span class="num">02</span><h2>Selected work</h2></div>
+      <p class="section-intro">A curated cross-section — the full record of publications, projects and funding lives on the academic profiles linked below.</p>
+    </div>
+
+    <!-- WORK GROUP: PROJECTS — featured shown by default; the rest expand via the button. Newest first. -->
+    <div class="group reveal">
+      <div class="group-label"><span class="lbl">Projects</span><span class="rule"></span><span class="count">17</span></div>
+      <div class="cards" id="projects-grid">
+        <div class="card">
+          <span class="period">2025 – present</span>
+          <h4>SMART-Agulhas</h4>
+          <p>Exploiting SWOT and multi-mission satellite altimetry to resolve meso- and sub-mesoscale dynamics of the greater Agulhas Current — eddies, Natal Pulses, and their impact on coastal sea level.</p>
+          <div class="tags"><span class="tag">PI · OSTST</span></div>
+        </div>
+        <a class="card" href="https://climate.esa.int/nl/supporting-the-paris-agreement/fracceo/" target="_blank" rel="noopener">
+          <span class="period">2025 – present</span>
+          <h4>FRACCEO <span class="arr">↗</span></h4>
+          <p>A globally applicable methodology combining Earth observation to assess urban flood risk in a changing climate.</p>
+          <div class="tags"><span class="tag">ESA</span></div>
+        </a>
+        <a class="card" href="https://destination-earth.eu/use-cases/adaptation-modelling-framework/" target="_blank" rel="noopener">
+          <span class="period">2023 – 2025</span>
+          <h4>DestinE · Adaptation Framework <span class="arr">↗</span></h4>
+          <p>A flexible framework for building interactive climate-adaptation modelling systems on DestinE data and infrastructure.</p>
+          <div class="tags"><span class="tag">Destination Earth</span></div>
+        </a>
+        <a class="card" href="https://www.intertwin.eu/" target="_blank" rel="noopener">
+          <span class="period">2022 – 2025</span>
+          <h4>interTwin <span class="arr">↗</span></h4>
+          <p>Co-designing an open-source interdisciplinary Digital Twin Engine; co-leading the environment / climate-impact domain.</p>
+          <div class="tags"><span class="tag">Horizon Europe</span></div>
+        </a>
+        <a class="card" href="https://www.globalwaterwatch.earth/" target="_blank" rel="noopener">
+          <span class="period">2021 – 2023</span>
+          <h4>Global Water Watch <span class="arr">↗</span></h4>
+          <p>Democratising the world's surface-water data from satellites. Product owner.</p>
+          <div class="tags"><span class="tag">Google.org</span></div>
+        </a>
+        <a class="card" href="https://c-scale.eu/" target="_blank" rel="noopener">
+          <span class="period">2021 – 2023</span>
+          <h4>C-SCALE <span class="arr">↗</span></h4>
+          <p>The Copernicus eoSC AnaLytics Engine — a federated compute and data infrastructure for big EO analytics, integrated with EOSC.</p>
+          <div class="tags"><span class="tag">H2020</span></div>
+        </a>
+        <a class="card extra" href="https://destination-earth.eu/use-cases/destine-pilot-service-global-tide-surge-forecast/" target="_blank" rel="noopener">
+          <span class="period">2025 – present</span>
+          <h4>DestinE · Global Tide &amp; Surge <span class="arr">↗</span></h4>
+          <p>Global high-resolution forecasts of tides, surges and currents for climate resilience and maritime safety.</p>
+          <div class="tags"><span class="tag">Destination Earth</span></div>
+        </a>
+        <a class="card extra" href="https://metoceandata.org/data" target="_blank" rel="noopener">
+          <span class="period">2024</span>
+          <h4>Metocean Data Portal · PEZ <span class="arr">↗</span></h4>
+          <p>Met-ocean data portal supporting offshore-wind development in the Princess Elisabeth Zone. Delivered as BlueEarthData product owner.</p>
+          <div class="tags"><span class="tag">offshore wind</span></div>
+        </a>
+        <a class="card extra" href="https://microsoft.github.io/AIforEarthDataSets/data/deltares-floods.html" target="_blank" rel="noopener">
+          <span class="period">2021</span>
+          <h4>Deltares Global Flood Maps <span class="arr">↗</span></h4>
+          <p>Global inundation-depth maps forced by extreme sea levels, published on Microsoft's Planetary Computer.</p>
+          <div class="tags"><span class="tag">Planetary Computer</span></div>
+        </a>
+        <a class="card extra" href="https://www.aeneas2020.eu/" target="_blank" rel="noopener">
+          <span class="period">2018 – 2019</span>
+          <h4>AENEAS <span class="arr">↗</span></h4>
+          <p>Functional design for a distributed, federated European Science Data Centre for the SKA.</p>
+          <div class="tags"><span class="tag">H2020</span></div>
+        </a>
+        <a class="card extra" href="https://nextgeoss.eu" target="_blank" rel="noopener">
+          <span class="period">2018 – 2019</span>
+          <h4>NextGEOSS <span class="arr">↗</span></h4>
+          <p>Next-generation European hub for Earth-observation data and EO-based applications.</p>
+          <div class="tags"><span class="tag">H2020</span></div>
+        </a>
+        <a class="card extra" href="https://eosc-hub.eu/" target="_blank" rel="noopener">
+          <span class="period">2018 – 2019</span>
+          <h4>EOSC-hub <span class="arr">↗</span></h4>
+          <p>A single contact point for European researchers to discover and access EOSC services and resources.</p>
+          <div class="tags"><span class="tag">H2020</span></div>
+        </a>
+        <a class="card extra" href="https://www.martera.eu/projects/topvoys" target="_blank" rel="noopener">
+          <span class="period">2018</span>
+          <h4>TOPVOYS <span class="arr">↗</span></h4>
+          <p>Decision-support tools for ship voyage optimisation from marine weather, wave and current forecasts.</p>
+          <div class="tags"><span class="tag">MarTERA</span></div>
+        </a>
+        <div class="card extra">
+          <span class="period">2018</span>
+          <h4>MarCoSouth</h4>
+          <p>Marine and coastal decision-support services to grow the blue economy across Southern and Eastern Africa.</p>
+          <div class="tags"><span class="tag">GMES &amp; Africa</span></div>
+        </div>
+        <a class="card extra" href="https://www.csir.co.za/ocean-modelling-and-forecasting" target="_blank" rel="noopener">
+          <span class="period">2016 – 2018</span>
+          <h4>CSIR Strategic Research Programme <span class="arr">↗</span></h4>
+          <p>High-resolution monitoring and prediction capabilities for South African marine domains.</p>
+          <div class="tags"><span class="tag">CSIR</span></div>
+        </a>
+        <a class="card extra" href="https://ocims.environment.gov.za/" target="_blank" rel="noopener">
+          <span class="period">2015 – 2018</span>
+          <h4>OCIMS <span class="arr">↗</span></h4>
+          <p>South Africa's National Oceans and Coastal Information Management System, under Operation Phakisa.</p>
+          <div class="tags"><span class="tag">Operation Phakisa</span></div>
+        </a>
+        <div class="card extra">
+          <span class="period">2014 – 2018</span>
+          <h4>Ocean data assimilation · South Africa</h4>
+          <p>Building Southern African capability in ocean modelling and data assimilation for research and operational forecasting.</p>
+          <div class="tags"><span class="tag">NRF</span></div>
+        </div>
+      </div>
+      <button class="show-all" id="proj-toggle" aria-expanded="false" aria-controls="projects-grid">
+        <span class="lbl-txt">Show all 17 projects</span><span class="chev" aria-hidden="true">↓</span>
+      </button>
+    </div>
+
+    <!-- WORK GROUP: PRODUCTS -->
+    <div class="group reveal">
+      <div class="group-label"><span class="lbl">Products</span><span class="rule"></span><span class="count">02</span></div>
+      <div class="cards">
+        <a class="card" href="https://metoceandata.org/" target="_blank" rel="noopener">
+          <h4>BlueEarthData <span class="arr">↗</span></h4>
+          <p>Open platform for discovering and accessing marine and ocean data; product owner (2022–2025). Its platform functions have since been ported to <strong>MetOceanData</strong>.</p>
+          <div class="tags"><span class="tag">product owner</span><span class="tag">open data</span><span class="tag">Deltares</span></div>
+        </a>
+        <a class="card" href="https://www.globalwaterwatch.earth/" target="_blank" rel="noopener">
+          <h4>Global Water Watch <span class="arr">↗</span></h4>
+          <p>Near-real-time monitoring of the world's surface water from satellites. Product owner; Google.org / Tides Foundation.</p>
+          <div class="tags"><span class="tag">product owner</span><span class="tag">earth observation</span></div>
+        </a>
+      </div>
+    </div>
+
+    <!-- WORK GROUP: APPLIED SCIENCE -->
+    <div class="group reveal">
+      <div class="group-label"><span class="lbl">Technical development examples</span><span class="rule"></span><span class="count">04</span></div>
+      <div class="cards">
+        <a class="card" href="https://github.com/backeb/sea_search_area_calculator" target="_blank" rel="noopener">
+          <h4>Search-and-rescue tool <span class="arr">↗</span></h4>
+          <p>Particle-trajectory modelling to support South African search-and-rescue operations at sea — including a search-area calculator.</p>
+          <div class="tags"><span class="tag">trajectory model</span><span class="tag">operational</span></div>
+        </a>
+        <a class="card" href="https://c-scale.eu/workflow-solutions/" target="_blank" rel="noopener">
+          <h4>Automated model workflows <span class="arr">↗</span></h4>
+          <p>Workflow development for automated, reproducible execution of environmental models at scale.</p>
+          <div class="tags"><span class="tag">automation</span><span class="tag">workflows</span></div>
+        </a>
+        <a class="card" href="https://microsoft.github.io/AIforEarthDataSets/data/deltares-floods.html" target="_blank" rel="noopener">
+          <h4>Global flood maps <span class="arr">↗</span></h4>
+          <p>Deltares global inundation-depth maps on Microsoft's Planetary Computer — DEM processing and water-level modelling at global scale.</p>
+          <div class="tags"><span class="tag">Planetary Computer</span><span class="tag">flood mapping</span></div>
+        </a>
+        <a class="card" href="https://github.com/backeb" target="_blank" rel="noopener">
+          <h4>GitHub <span class="arr">↗</span></h4>
+          <p>Open-source code, tools and analysis behind the work above — including the search-area calculator and project workflows.</p>
+          <div class="tags"><span class="tag">open source</span><span class="tag">code</span></div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CREDENTIALS ============ -->
+<section class="block" id="background">
+  <div class="wrap reveal">
+    <div class="head"><span class="num">03</span><h2>Background</h2></div>
+    <div class="creds">
+      <div class="stat-row">
+        <div class="stat"><span class="big">PhD</span><span class="desc"><b>Physical oceanography</b>, University of Cape Town — numerical modelling &amp; satellite remote sensing. MSc, University of Bergen.</span></div>
+        <div class="stat"><span class="big">15+</span><span class="desc">years across ocean-climate research, numerical modelling and Earth observation.</span></div>
+        <div class="stat"><span class="big">30+</span><span class="desc">peer-reviewed papers, including work in <b>Nature</b> and <b>Nature Climate Change</b>.<span class="pub-inline">The complete, always-current list of publications lives on <a href="https://orcid.org/0000-0001-7940-6975" target="_blank" rel="noopener">ORCID</a> and <a href="https://scholar.google.com/citations?user=wOWu1TwAAAAJ" target="_blank" rel="noopener">Google Scholar</a>.</span></span></div>
+        <div class="stat"><span class="big">25</span><span class="desc">funded projects secured across EU and international consortia <span style="color:var(--current-dim)">(confirmed proposals)</span>.</span></div>
+      </div>
+      <div class="honours">
+        <h3>Recognition</h3>
+        <div class="honour"><span class="y">2016</span><span class="t">NRF Y1-rated researcher</span><span class="src">National Research Foundation</span></div>
+        <div class="honour"><span class="y">2015</span><span class="t">200 Young South Africans</span><span class="src">Mail &amp; Guardian</span></div>
+        <div class="honour"><span class="y">2012</span><span class="t">Stanley Jackson Award</span><span class="src">best published paper, atmospheric &amp; oceanic sciences · SASAS</span></div>
+        <div class="langs">
+          <h3>Languages</h3>
+          <p>English &amp; German <span>native</span> · Dutch &amp; Afrikaans <span>working</span> · Norwegian <span>basic</span></p>
+        </div>
+      </div>
+    </div>
+    <!-- CAPABILITIES — curated from your LinkedIn skills; edit freely -->
+    <div class="caps">
+      <h3>Capabilities</h3>
+      <div class="tags">
+        <span class="tag">Numerical modelling</span>
+        <span class="tag">Satellite remote sensing</span>
+        <span class="tag">Data assimilation</span>
+        <span class="tag">Flood forecasting</span>
+        <span class="tag">Climate-change adaptation</span>
+        <span class="tag">Product ownership</span>
+        <span class="tag">Stakeholder management</span>
+        <span class="tag">Project leadership</span>
+        <span class="tag">Scientific computing</span>
+        <span class="tag">Python · Fortran · Matlab</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap reveal">
+    <div class="foot-grid">
+      <h2>From prototype to lasting impact.</h2>
+      <nav class="foot-links" aria-label="Footer">
+        <a href="https://www.linkedin.com/in/backeb/" target="_blank" rel="noopener">LinkedIn <span class="arr">↗</span></a>
+        <a href="https://github.com/backeb" target="_blank" rel="noopener">GitHub <span class="arr">↗</span></a>
+        <a href="https://orcid.org/0000-0001-7940-6975" target="_blank" rel="noopener">ORCID <span class="arr">↗</span></a>
+        <a href="https://scholar.google.com/citations?user=wOWu1TwAAAAJ" target="_blank" rel="noopener">Google Scholar <span class="arr">↗</span></a>
+      </nav>
+    </div>
+    <!-- Update this date whenever you refresh the site -->
+    <p class="updated">Updated June 2026 · Björn Backeberg</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var canvas=document.getElementById('flow');
+  if(!canvas)return;
+  var ctx=canvas.getContext('2d');
+  var hero=document.getElementById('hero');
+  var dpr=Math.min(window.devicePixelRatio||1,2);
+  var W,H,particles;
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function size(){
+    W=canvas.width=hero.offsetWidth*dpr;
+    H=canvas.height=hero.offsetHeight*dpr;
+    canvas.style.width=hero.offsetWidth+'px';
+    canvas.style.height=hero.offsetHeight+'px';
+  }
+  // smooth pseudo-flow field (layered sines → angle), evoking ocean currents
+  function angle(x,y){
+    var s=0.0017;
+    return (Math.sin(x*s)*Math.cos(y*s*0.8)+Math.sin((x+y)*s*0.55)*0.7)*Math.PI;
+  }
+  function seed(){
+    var n=Math.max(80,Math.min(280,Math.floor(W*H/16000)));
+    particles=[];
+    for(var i=0;i<n;i++)particles.push({x:Math.random()*W,y:Math.random()*H,a:Math.random()});
+  }
+  function step(){
+    ctx.fillStyle='rgba(8,24,34,0.055)';
+    ctx.fillRect(0,0,W,H);
+    ctx.lineWidth=dpr*0.8;
+    for(var i=0;i<particles.length;i++){
+      var p=particles[i];
+      var ang=angle(p.x,p.y);
+      var nx=p.x+Math.cos(ang)*1.15*dpr;
+      var ny=p.y+Math.sin(ang)*1.15*dpr;
+      ctx.strokeStyle='rgba(52,179,168,'+(0.045+p.a*0.10)+')';
+      ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(nx,ny);ctx.stroke();
+      p.x=nx;p.y=ny;
+      if(p.x<0||p.x>W||p.y<0||p.y>H||Math.random()<0.002){
+        p.x=Math.random()*W;p.y=Math.random()*H;
+      }
+    }
+  }
+  function loop(){step();requestAnimationFrame(loop);}
+
+  function start(){
+    size();seed();
+    ctx.clearRect(0,0,W,H);
+    if(reduce){for(var i=0;i<240;i++)step();}  // static current map for reduced-motion
+    else loop();
+  }
+  start();
+
+  var rt;
+  window.addEventListener('resize',function(){
+    clearTimeout(rt);rt=setTimeout(function(){
+      size();seed();ctx.clearRect(0,0,W,H);
+      if(reduce){for(var i=0;i<240;i++)step();}
+    },200);
+  });
+
+  // scroll reveal
+  if(!reduce&&'IntersectionObserver'in window){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+    },{threshold:0.12});
+    document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+  }else{
+    document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');});
+  }
+})();
+</script>
+<script>
+(function(){
+  var t=document.getElementById("proj-toggle");
+  if(!t)return;
+  var g=document.getElementById("projects-grid");
+  t.addEventListener("click",function(){
+    var open=g.classList.toggle("expanded");
+    t.setAttribute("aria-expanded",open?"true":"false");
+    t.querySelector(".lbl-txt").textContent=open?"Show fewer":"Show all 17 projects";
+    t.querySelector(".chev").textContent=open?"↑":"↓";
+  });
+})();
+</script>
+</body>
+</html>
